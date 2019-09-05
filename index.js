@@ -1,11 +1,11 @@
-// content of index.js
 const http = require('http');
+const os = require('os');
 const port = 3030;
 const content = process.env.SERVERCONTNET || "Hello world";
 
 const requestHandler = (request, response) => {
     response.end(content + " from " + os.hostname());
-}
+};
 
 const server = http.createServer(requestHandler);
 
