@@ -4,7 +4,7 @@ const port = 3030;
 const content = process.env.SERVERCONTNET || "Hello world";
 
 const requestHandler = (request, response) => {
-    response.end(content + " from " + os.hostname());
+    response.end(content + " requested as " + request.url  + " from " + os.hostname());
 };
 
 const server = http.createServer(requestHandler);
