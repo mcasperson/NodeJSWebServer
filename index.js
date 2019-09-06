@@ -5,7 +5,15 @@ const port = 3030;
 const content = process.env.SERVERCONTNET || "Hello world";
 
 const requestHandler = (request, response) => {
-    response.end(content + " requested from " + url.parse(request.url).pathname  + " on " + os.hostname());
+    const path = url.parse(request.url).pathname;
+
+    if (path == "/failsometimes") {
+        if (Math.floor((Math.random() * 3)) == 0) {
+            response.statusCode = 500;
+        }
+    }
+
+    response.end(content + " requested from " + url.parse(request.url).pathname  + " on " + os.hostname() + " with code " + response.statusCode);
 };
 
 const server = http.createServer(requestHandler);
