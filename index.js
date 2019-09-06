@@ -1,10 +1,11 @@
 const http = require('http');
+var url = require("url");
 const os = require('os');
 const port = 3030;
 const content = process.env.SERVERCONTNET || "Hello world";
 
 const requestHandler = (request, response) => {
-    response.end(content + " requested as " + request.url  + " from " + os.hostname());
+    response.end(content + " requested as " + url.parse(request.url).pathname  + " from " + os.hostname());
 };
 
 const server = http.createServer(requestHandler);
