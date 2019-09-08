@@ -14,7 +14,7 @@ const requestHandler = (request, response) => {
         }
     }
 
-    response.end(protocol + " " + content + " requested from " + url.parse(request.url).pathname  + " on " + os.hostname() + " with code " + response.statusCode);
+    response.end(content + " requested from " + url.parse(request.url).pathname + " via " + protocol  + " on " + os.hostname() + " with code " + response.statusCode);
 };
 
 const server = http.createServer(requestHandler);
