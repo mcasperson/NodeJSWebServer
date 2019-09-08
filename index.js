@@ -6,7 +6,6 @@ const content = process.env.SERVERCONTNET || "Hello world";
 
 const requestHandler = (request, response) => {
     const path = url.parse(request.url).pathname;
-    const protocol = url.parse(request.url).protocol;
 
     if (path == "/failsometimes") {
         if (Math.floor((Math.random() * 3)) == 0) {
@@ -14,7 +13,7 @@ const requestHandler = (request, response) => {
         }
     }
 
-    response.end(content + " requested from " + url.parse(request.url).pathname + " via " + protocol  + " on " + os.hostname() + " with code " + response.statusCode);
+    response.end(content + " requested from " + url.parse(request.url).pathname + " via " + request.protocol  + " on " + os.hostname() + " with code " + response.statusCode);
 };
 
 const server = http.createServer(requestHandler);
